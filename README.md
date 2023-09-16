@@ -1,7 +1,75 @@
-# Vue 3 + Vite
+# Vue test code generator
+for Vue3 
+## Usage
+- vue component test code generation from vue source 
+`node tests/support/test-generator-vue3 HelloWorld`
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+## example 
+source 
+```
+<script setup>
+import { ref } from 'vue'
+import XXService from '@/component/XXService'
+defineProps({
+  msg: String,
+})
+const count = ref(0)
+</script>
+<template>
+  <div class="card">
+    <button type="button" @click="count++">count is {{ count }}</button>
+  </div>
+</template>
+```
 
-## Recommended IDE Setup
+test file 
+```
+import subject from 'src/components/HelloWorld.vue';
+import XXService from '@/component/XXService';
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+describe('HelloWorld spec', () => {
+    beforeEach(() => {
+        // XXService.method = jest.fn();
+    });
+    const createRender = (props = {}) => {
+        // TODO return ...
+    }
+    describe('lifecycle', () => {
+        it('given role', async () => {
+            createRender();
+            await flushPromise();
+
+            // TODO
+            expect('hello').toBe('hello');
+        })
+        it('no role', async () => {
+            createRender();
+            await flushPromise();
+
+            // TODO
+        })
+    });
+    describe('event', () => {
+        it('click count is ', async () => {
+            const caption = 'count is ';
+            createRender();
+            await flushPromise();
+
+            // TODO when 
+            // clickButton
+            
+            // TODO
+            expect('hello').toBe('hello');
+        })
+    });
+});
+
+```
+
+## TODO
+- props handling
+- vue2 support
+
+## reference
+- vue3 source parser : https://github.com/vuejs/core/tree/main/packages/compiler-sfc
+- template engine : https://handlebarsjs.com/

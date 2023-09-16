@@ -67,9 +67,11 @@ describe('HelloWorld spec', () => {
 ```
 
 ## TODO
-- props handling
+- props, vuex, emit, rotuer handling
 - vue2 support
 
 ## reference
 - vue3 source parser : https://github.com/vuejs/core/tree/main/packages/compiler-sfc
 - template engine : https://handlebarsjs.com/
+- [vue test generator for vscode extension|https://github.com/owlsdepartment/vue-tests-generator] 
+- https://medium.com/@eabelard/the-dos-and-donts-of-writing-jest-unit-tests-for-vue-js-d462e8199e85

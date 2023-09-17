@@ -63,31 +63,35 @@ const parseAll = (src) => {
     return { template: template, script: script };
 }
 
-/////////// 
-console.log(`${process.argv[0]} generate to ${process.argv[2]}`);
+const generate = (subject, compPath) => {
 
-// 1. parsing 
-const subject = process.argv[2];
-const sourceString = fs.readFileSync(`src/components/${subject}.vue`).toString('utf8');
-const result = parseAll(sourceString);
+    // 1. parsing 
+    const sourceString = fs.readFileSync(`${compPath}/${subject}.vue`).toString('utf8');
+    const result = parseAll(sourceString);
 
-// 2. templating
-const template = fs.readFileSync('tests/support/vue3-template.hbs').toString('utf8');
-const map = {
-    subject: subject,
-    imports: result.script.imports,
-    props: result.script.props,
-    buttons: result.template.buttons,
-}
-const templatFn = Handlerbars.compile(template);
-const specString = templatFn(map);
+    // 2. templating
+    const template = fs.readFileSync('templates/vue3-template.hbs').toString('utf8');
+    const map = {
+        subject: subject,
+        imports: result.script.imports,
+        props: result.script.props,
+        buttons: result.template.buttons,
+    }
+    const templatFn = Handlerbars.compile(template);
+    const specString = templatFn(map);
 
-// 3. generate file
-if (!fs.existsSync('tests/components')) {
-    fs.mkdirSync('tests/components');
+    // 3. generate file
+    if (!fs.existsSync('tests')) {
+        fs.mkdirSync('tests');
+    }
+    if (!fs.existsSync('tests/components')) {
+        fs.mkdirSync('tests/components');
+    }
+    try {
+        fs.writeFileSync(`tests/components/${subject}.spec.js`, specString);
+    } catch (e) {
+        console.error(e);
+    }
 }
-try {
-    fs.writeFileSync(`tests/components/${subject}.spec.js`, specString);
-} catch (e) {
-    console.error(e);
-}
+
+export { generate };

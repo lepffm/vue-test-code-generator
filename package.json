@@ -1,21 +1,15 @@
 {
-  "name": "vite-project",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-    "flush-promises": "^1.0.2",
-    "vue": "^3.3.4"
-  },
-  "devDependencies": {
-    "@vitejs/plugin-vue": "^4.2.3",
-    "@vue/compiler-sfc": "^3.3.4",
-    "handlebars": "^4.7.8",
-    "vite": "^4.4.5"
-  }
+    "name": "vue-test-code-generator",
+    "version": "0.1.0",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "vue2": "node index vue2 HelloWorld samples/vue2",
+        "vue3": "node index vue3 HelloWorld samples/vue3"
+    },
+    "devDependencies": {
+        "@vue/compiler-sfc": "^3.3.4",
+        "handlebars": "^4.7.8",
+        "vue-template-compiler": "^2.7.14"
+    }
 }

@@ -1,0 +1,42 @@
+import subject from 'src/components/{{subject}}.vue';
+{{#each imports}}
+{{{this}}};
+{{/each}}
+
+describe('{{subject}} spec', () => {
+    beforeEach(() => {
+    });
+    const createRender = (props = {}) => {
+        // TODO return ...
+    }
+    describe('lifecycle', () => {
+        it('given role', async () => {
+            createRender();
+            await flushPromise();
+
+            // TODO
+            expect('hello').toBe('hello');
+        })
+        it('no role', async () => {
+            createRender();
+            await flushPromise();
+
+            // TODO
+        })
+    });
+    describe('event', () => {
+        {{#each buttons}}
+        it('click {{this}}', async () => {
+            const caption = '{{this}}';
+            createRender();
+            await flushPromise();
+
+            // TODO when 
+            // clickButton
+            
+            // TODO
+            expect('hello').toBe('hello');
+        })
+        {{/each}}
+    });
+});
